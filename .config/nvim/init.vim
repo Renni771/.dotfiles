@@ -1,7 +1,6 @@
 " ------------------------------
 " Sets 
 " ------------------------------
-"
 set nocompatible
 set exrc " Use vimrc. in pwd when vim starts if found, otherwise use normal
 set number
@@ -12,16 +11,16 @@ set tabstop=2 softtabstop=2
 set noerrorbells
 set nowrap
 set scrolloff=8
-" set nohlsearch
+set nohlsearch
 set incsearch
 set hidden
-if !has("nvim")
-				set encoding=UTF-8
-endif
 set noswapfile
 set nobackup
 set undodir=~/.config/nvim/undodir
 set undofile
+if !has("nvim")
+				set encoding=UTF-8
+endif
 
 " ------------------------------
 "  Plugins
@@ -35,10 +34,33 @@ Plug 'nvim-telescope/telescope.nvim'
 
 " Zen mode
 Plug 'folke/zen-mode.nvim'
+
+" Native LSP etc
+Plug 'neovim/nvim-lspconfig'
+Plug 'onsails/lspkind-nvim'
+
+" Flutter
+Plug 'akinsho/flutter-tools.nvim'
+
+" Auto completion
+Plug 'hrsh7th/nvim-cmp' |
+			\ Plug 'hrsh7th/cmp-nvim-lsp' |
+			\ Plug 'hrsh7th/cmp-buffer' |
+			\ Plug 'hrsh7th/cmp-path' |
+			\ Plug 'hrsh7th/cmp-cmdline'
+
+" Better syntax highlighting
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+
 endif
 
-" Language server etc
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" Snippets
+Plug 'hrsh7th/cmp-vsnip'
+Plug 'hrsh7th/vim-vsnip'
+Plug 'rafamadriz/friendly-snippets'
+Plug 'Nash0x7E2/awesome-flutter-snippets'
+Plug 'RobertBrunhage/flutter-riverpod-snippets'
+Plug 'spoonscen/es6-mocha-snippets-vs-code'
 
 " Colorscheme
 Plug 'sainnhe/sonokai'
@@ -52,14 +74,6 @@ Plug 'jiangmiao/auto-pairs'
 
 " Git
 Plug 'tpope/vim-fugitive'
-
-" Dart/Flutter support
-Plug 'dart-lang/dart-vim-plugin' " Dart syntax highlighting
-Plug 'natebosch/vim-lsc'
-Plug 'natebosch/vim-lsc-dart'
-
-" Better syntax highlighting
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 " Undoingzz
 Plug 'mbbill/undotree'
@@ -97,15 +111,13 @@ nnoremap <leader>vr :so ~/.config/nvim/init.vim<CR>
 nnoremap <leader>ve :tabnew ~/.config/nvim/init.vim<CR>
 
 " Navigate windows easily
-nmap <silent> <C-l> <C-w>l
-nmap <silent> <C-k> <C-w>k
-nmap <silent> <C-j> <C-w>j
-nmap <silent> <C-h> <C-w>h
+noremap <leader>k :wincmd k <CR>
+noremap <leader>j :wincmd j <CR>
+noremap <leader>h :wincmd h <CR>
+noremap <leader>l :wincmd l <CR>
 
 " Alternate buffers
 noremap <Tab> <c-^>
-
-" New remaps i'm still playing with
 
 " Reselect visual selection after indenting
 vnoremap < <gv
@@ -125,71 +137,19 @@ nnoremap J mzj`z
 " -----------------------------
 "  Plugin specific remaps
 " ------------------------------
-
 " Zen mode
 noremap <leader>zen :ZenMode <CR>
 
-" Telescope
-nnoremap <leader>fi <cmd>Telescope find_files<cr>
-nnoremap <leader>rg <cmd>Telescope live_grep<cr>
-nnoremap <leader>gs <cmd>Telescope git_status<cr>
-
-" Flutter
-nnoremap <leader>flr <cmd>:CocCommand flutter.run<cr>
-nnoremap <leader>flq <cmd>:CocCommand flutter.dev.quit<cr>
-nnoremap <leader>fla <cmd>:CocCommand flutter.attach<cr>
-nnoremap <leader>fld <cmd>:CocCommand flutter.dev.openDevLog<cr>
-
-" Nerd Tree
-noremap <leader>b :NERDTreeToggleVCS <CR>
-
 " Undo Tree
-nnoremap <leader>h :UndotreeToggle<CR>
+nnoremap <c-h> :UndotreeToggle<CR>
 
 " ------------------------------
 "  Plugin config 
 " ------------------------------
-"" Coc 
-let g:coc_global_extensions = [
-												\ 'coc-prettier',
-												\ 'coc-flutter',
-												\ 'coc-json',
-												\ 'coc-eslint',
-												\ 'coc-markdownlint',
-												\ 'coc-spell-checker',
-												\ 'coc-tsserver',
-												\ 'coc-yaml' ]
+source $HOME/.config/nvim/plugins/lsp.vim
+source $HOME/.config/nvim/plugins/nvim-cmp.vim
+source $HOME/.config/nvim/plugins/treesitter.vim
+source $HOME/.config/nvim/plugins/telescope.vim
+source $HOME/.config/nvim/plugins/nerdtree.vim
+source $HOME/.config/nvim/plugins/flutter-tools.vim
 
-source $HOME/.config/nvim/coc.vim
-command! -nargs=0 Prettier :CocCommand prettier.formatFile " Formatting with prettier
-
-" Dart/Flutter
-set completeopt-=preview " Disable annoying autocomplete window
-set shortmess-=F " Avoid suppressing error messages
-let g:lsc_server_commands = {'dart': 'dart_language_server'}
-let g:lsc_auto_map = v:true
-let g:dartfmt_options = ['--fix','-l 120']
-let g:dart_format_on_save = 1
-
-" Nerd Tree
-let NERDTreeShowHidden=1
-let NERDTreeMinimalUI=1
-
-" Treesitter
-lua <<EOF
-require'nvim-treesitter.configs'.setup {
-				ensure_installed = "typescript", "javascript", "json", "lua", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
-				highlight = {
-								enable = true,
-								custom_captures = {
-												-- ["keyword"] = "TSString",
-								},
-				},
-				incremental_selection = {
-								enable = true,
-				},
-				indent = {
-								enable = true
-				}
-}
-EOF
