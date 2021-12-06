@@ -1,3 +1,11 @@
+Plug 'hrsh7th/nvim-cmp' |
+			\ Plug 'hrsh7th/cmp-nvim-lsp' |
+			\ Plug 'hrsh7th/cmp-buffer' |
+			\ Plug 'hrsh7th/cmp-path' |
+			\ Plug 'hrsh7th/cmp-cmdline'
+Plug 'onsails/lspkind-nvim' " customise nvim-cmp completion
+
+function CMPSetup()
 set completeopt=menu,menuone,noselect
 
 lua <<EOF
@@ -46,9 +54,15 @@ lua <<EOF
 		},
 
 		experimental = {
-			native_menu=false,
-			ghost_text=true,
+			native_menu=true,
+			ghost_text=false,
 		},
 
   })
 EOF
+endfunction
+
+augroup CMPSetup
+    autocmd!
+    autocmd User PlugLoaded call CMPSetup()
+augroup END

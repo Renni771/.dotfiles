@@ -1,3 +1,6 @@
+Plug 'neovim/nvim-lspconfig'
+
+function LSPSetup()
 lua << EOF
 local nvim_lsp = require('lspconfig')
 
@@ -33,7 +36,7 @@ local capabilities = require('cmp_nvim_lsp').update_capabilities(
 	vim.lsp.protocol.make_client_capabilities()
 )
 
-local servers = {'tsserver', 'eslint'} -- dartls is exlcuded since flutter-tools sets it up automatically 
+local servers = {'tsserver', 'eslint', 'hls'} -- dartls is exlcuded since flutter-tools sets it up automatically 
 
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup {
@@ -60,12 +63,15 @@ require("flutter-tools").setup {
 	  closing_tags = {
     -- highlight = "ErrorMsg", -- highlight for the closing tag
     prefix = "// ", -- character to use for close tag e.g. > Widget
-    enabled = true 
+    enabled = false 
   },
 
 }
 
 EOF
+endfunction
 
-" autocmd BufWritePre <buffer> <cmd>EslintFixAll<CR>
-
+augroup WhichKeySetup
+    autocmd!
+    autocmd User PlugLoaded call LSPSetup()
+augroup END

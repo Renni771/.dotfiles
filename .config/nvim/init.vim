@@ -11,6 +11,7 @@ set tabstop=2 softtabstop=2
 set noerrorbells
 set nowrap
 set scrolloff=8
+set sidescrolloff=16
 set nohlsearch
 set incsearch
 set hidden
@@ -21,85 +22,18 @@ set undofile
 if !has("nvim")
 				set encoding=UTF-8
 endif
-
-" ------------------------------
-"  Plugins
-" ------------------------------
-call plug#begin('~/.vim/plugged')
-
-if has("nvim")
-" Fuzzy finder
-Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope.nvim'
-
-" Zen mode
-Plug 'folke/zen-mode.nvim'
-
-" Native LSP etc
-Plug 'neovim/nvim-lspconfig'
-Plug 'onsails/lspkind-nvim'
-
-" Flutter
-Plug 'akinsho/flutter-tools.nvim'
-
-" Auto completion
-Plug 'hrsh7th/nvim-cmp' |
-			\ Plug 'hrsh7th/cmp-nvim-lsp' |
-			\ Plug 'hrsh7th/cmp-buffer' |
-			\ Plug 'hrsh7th/cmp-path' |
-			\ Plug 'hrsh7th/cmp-cmdline'
-
-" Better syntax highlighting
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-
-endif
-
-" Snippets
-Plug 'hrsh7th/cmp-vsnip'
-Plug 'hrsh7th/vim-vsnip'
-Plug 'rafamadriz/friendly-snippets'
-Plug 'Nash0x7E2/awesome-flutter-snippets'
-Plug 'RobertBrunhage/flutter-riverpod-snippets'
-Plug 'spoonscen/es6-mocha-snippets-vs-code'
-
-" Colorscheme
-Plug 'sainnhe/sonokai'
-
-" Visual file explorer
-Plug 'preservim/nerdtree' |
-				\ Plug 'Xuyuanp/nerdtree-git-plugin'
-
-" Auto brackets
-Plug 'jiangmiao/auto-pairs'
-
-" Git
-Plug 'tpope/vim-fugitive'
-
-" Undoingzz
-Plug 'mbbill/undotree'
-
-" Smooth scrolling because my eyes
-Plug 'psliwka/vim-smoothie'
-
-" Auto commenting
-Plug 'tpope/vim-commentary'
-
-" Extend vim's language support
-Plug 'sheerun/vim-polyglot'
-
-" Surround stuff
-Plug 'tpope/vim-surround'
-
-call plug#end()
-
-
-" ------------------------------
-"  Colorscheme
-" ------------------------------
 if has('termguicolors')
 	set termguicolors
 endif
-colorscheme sonokai
+
+if !has('nvim') && &ttimeoutlen == -1
+  set ttimeout
+  set ttimeoutlen=100
+endif
+
+if has('autocmd')
+  filetype plugin indent on
+endif
 
 " ------------------------------
 "  Remaps
@@ -107,14 +41,14 @@ colorscheme sonokai
 let mapleader = " "
 
 " Config editing
-nnoremap <leader>vr :so ~/.config/nvim/init.vim<CR>
-nnoremap <leader>ve :tabnew ~/.config/nvim/init.vim<CR>
+nnoremap <leader>vr :so $HOME/.config/nvim/init.vim<CR>
+nnoremap <leader>ve :tabnew $HOME/.config/nvim/init.vim<CR>
 
 " Navigate windows easily
-noremap <leader>k :wincmd k <CR>
-noremap <leader>j :wincmd j <CR>
-noremap <leader>h :wincmd h <CR>
-noremap <leader>l :wincmd l <CR>
+nmap <silent> <C-l> <C-w>l
+nmap <silent> <C-k> <C-w>k
+nmap <silent> <C-j> <C-w>j
+nmap <silent> <C-h> <C-w>h
 
 " Alternate buffers
 noremap <Tab> <c-^>
@@ -123,7 +57,6 @@ noremap <Tab> <c-^>
 vnoremap < <gv
 vnoremap > >gv
 
-" Allow opening even nonexistent files under cursor
 map gf :edit <cfile><cr>
 
 " Make Y behave like the other capital letters
@@ -134,22 +67,43 @@ nnoremap n nzzzv
 nnoremap N Nzzzv
 nnoremap J mzj`z
 
-" -----------------------------
-"  Plugin specific remaps
 " ------------------------------
-" Zen mode
-noremap <leader>zen :ZenMode <CR>
+"  Plugins
+" ------------------------------
 
-" Undo Tree
-nnoremap <c-h> :UndotreeToggle<CR>
+" Automatically install vim-plug
+let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+if empty(glob(data_dir . '/autoload/plug.vim'))
+  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+call plug#begin(data_dir . '/plugins')
+
+Plug 'nvim-lua/plenary.nvim'
+source $HOME/.config/nvim/plugins/lsp.vim  " Native LSP etc
+source $HOME/.config/nvim/plugins/nvim-cmp.vim " Auto completion
+source $HOME/.config/nvim/plugins/flutter-tools.vim " Flutter
+source $HOME/.config/nvim/plugins/telescope.vim " Fuzzy finder
+source $HOME/.config/nvim/plugins/zenmode.vim " Zen mode
+source $HOME/.config/nvim/plugins/treesitter.vim " Better syntax highlighting
+source $HOME/.config/nvim/plugins/vim-polyglot.vim " Extend vim's language support
+source $HOME/.config/nvim/plugins/snippets.vim " Snippets
+source $HOME/.config/nvim/plugins/nerdtree.vim " Visual file explorer
+source $HOME/.config/nvim/plugins/auto-pairs.vim " Auto brackets
+source $HOME/.config/nvim/plugins/vim-fugitive.vim " Git
+source $HOME/.config/nvim/plugins/undotree.vim " Undoingzz
+source $HOME/.config/nvim/plugins/vim-commentary.vim " Auto commenting
+source $HOME/.config/nvim/plugins/vim-surround.vim " Surround stuff
+source $HOME/.config/nvim/plugins/sonokai.vim " Colorscheme
+source $HOME/.config/nvim/plugins/harpoon.vim " Harpoon 
 
 " ------------------------------
-"  Plugin config 
+"  Super very necessary plugins
 " ------------------------------
-source $HOME/.config/nvim/plugins/lsp.vim
-source $HOME/.config/nvim/plugins/nvim-cmp.vim
-source $HOME/.config/nvim/plugins/treesitter.vim
-source $HOME/.config/nvim/plugins/telescope.vim
-source $HOME/.config/nvim/plugins/nerdtree.vim
-source $HOME/.config/nvim/plugins/flutter-tools.vim
+source $HOME/.config/nvim/plugins/vim-airline.vim " yess
+source $HOME/.config/nvim/plugins/vim-smoothie.vim " Smooth scrolling because my eyes
+
+call plug#end()
+doautocmd User PlugLoaded " Hook into plugin setup
 

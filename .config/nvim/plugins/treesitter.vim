@@ -1,18 +1,26 @@
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+
+function TreesitterSetup()
 lua <<EOF
 require'nvim-treesitter.configs'.setup {
-				ensure_installed = "typescript", "javascript", "json", "lua", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+				ensure_installed = "maintained", "haskell",
 				highlight = {
 								enable = true,
 								custom_captures = {
-												-- ["keyword"] = "TSString",
+										-- ["keyword"] = "TSString",
 								},
 				},
 				incremental_selection = {
 								enable = true,
 				},
-				indent = {
+								indent = {
 								enable = true
 				}
 }
 EOF
+endfunction
 
+augroup TreesitterSetup
+    autocmd!
+    autocmd User PlugLoaded call TreesitterSetup()
+augroup END

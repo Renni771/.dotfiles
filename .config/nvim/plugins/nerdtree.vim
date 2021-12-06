@@ -1,4 +1,7 @@
+Plug 'preservim/nerdtree' |
+				\ Plug 'Xuyuanp/nerdtree-git-plugin'
+
 let NERDTreeShowHidden=1
 let NERDTreeMinimalUI=1
 
-noremap <leader>b :NERDTreeToggleVCS <CR>
+noremap <silent> <c-b> :NERDTreeToggleVCS <CR>
