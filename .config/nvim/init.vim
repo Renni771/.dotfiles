@@ -1,17 +1,18 @@
 " ------------------------------
-" Sets 
+" Sets
 " ------------------------------
 set nocompatible
-set exrc " Use vimrc. in pwd when vim starts if found, otherwise use normal
 set number
-set relativenumber 
-set smartindent
-set smarttab
-set tabstop=2 softtabstop=2
+set relativenumber
+set tabstop=2 shiftwidth=2 expandtab
+set smarttab                            " Makes tabbing smarter will realize you have 2 vs 4
+set smartindent                         " Makes indenting smart
+set expandtab                           " Converts tabs to spaces
+set autoindent                          " Good auto indent
 set noerrorbells
 set nowrap
 set scrolloff=8
-set sidescrolloff=16
+set sidescrolloff=24
 set nohlsearch
 set incsearch
 set hidden
@@ -19,21 +20,27 @@ set noswapfile
 set nobackup
 set undodir=~/.config/nvim/undodir
 set undofile
-if !has("nvim")
-				set encoding=UTF-8
-endif
-if has('termguicolors')
-	set termguicolors
-endif
+set encoding=UTF-8
+set mouse=a
+set clipboard=unnamedplus " copy to system clipboard
+" set timeoutlen=300
+" set ttimeoutlen=300
+" set updatetime=300
 
-if !has('nvim') && &ttimeoutlen == -1
-  set ttimeout
-  set ttimeoutlen=100
-endif
+" if &term =~ '256color'
+"     " Disable Background Color Erase (BCE) so that color schemes
+"     " work properly when Vim is used inside tmux and GNU screen
+"     set t_ut=
+" endif
+
+" set t_Co=256
 
 if has('autocmd')
   filetype plugin indent on
 endif
+
+" Automatically deletes all trailing whitespace and newlines at end of file on save.
+autocmd BufWritePre * :%s/\s\+$//e
 
 " ------------------------------
 "  Remaps
@@ -50,7 +57,7 @@ nmap <silent> <C-k> <C-w>k
 nmap <silent> <C-j> <C-w>j
 nmap <silent> <C-h> <C-w>h
 
-" Alternate buffers
+" " Alternate buffers
 noremap <Tab> <c-^>
 
 " Reselect visual selection after indenting
@@ -65,7 +72,7 @@ nnoremap Y y$
 " Keep it centered
 nnoremap n nzzzv
 nnoremap N Nzzzv
-nnoremap J mzj`z
+nnoremap J mzJ`z
 
 " ------------------------------
 "  Plugins
@@ -73,6 +80,7 @@ nnoremap J mzj`z
 
 " Automatically install vim-plug
 let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+
 if empty(glob(data_dir . '/autoload/plug.vim'))
   silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
@@ -81,22 +89,21 @@ endif
 call plug#begin(data_dir . '/plugins')
 
 Plug 'nvim-lua/plenary.nvim'
+source $HOME/.config/nvim/plugins/colorscheme.vim " Colorscheme
+source $HOME/.config/nvim/plugins/flutter-tools.vim " Flutter
 source $HOME/.config/nvim/plugins/lsp.vim  " Native LSP etc
 source $HOME/.config/nvim/plugins/nvim-cmp.vim " Auto completion
-source $HOME/.config/nvim/plugins/flutter-tools.vim " Flutter
 source $HOME/.config/nvim/plugins/telescope.vim " Fuzzy finder
-source $HOME/.config/nvim/plugins/zenmode.vim " Zen mode
-source $HOME/.config/nvim/plugins/treesitter.vim " Better syntax highlighting
-source $HOME/.config/nvim/plugins/vim-polyglot.vim " Extend vim's language support
 source $HOME/.config/nvim/plugins/snippets.vim " Snippets
 source $HOME/.config/nvim/plugins/nerdtree.vim " Visual file explorer
 source $HOME/.config/nvim/plugins/auto-pairs.vim " Auto brackets
-source $HOME/.config/nvim/plugins/vim-fugitive.vim " Git
-source $HOME/.config/nvim/plugins/undotree.vim " Undoingzz
 source $HOME/.config/nvim/plugins/vim-commentary.vim " Auto commenting
-source $HOME/.config/nvim/plugins/vim-surround.vim " Surround stuff
-source $HOME/.config/nvim/plugins/sonokai.vim " Colorscheme
-source $HOME/.config/nvim/plugins/harpoon.vim " Harpoon 
+source $HOME/.config/nvim/plugins/harpoon.vim " Harpoon
+
+source $HOME/.config/nvim/plugins/treesitter.vim " Better syntax highlighting  " POSSIBLY SLOWING VIM DOWN
+
+" source $HOME/.config/nvim/plugins/vim-latex.vim " LaTeX
+" source $HOME/.config/nvim/plugins/nvim-dap.vim " Debugger
 
 " ------------------------------
 "  Super very necessary plugins
@@ -105,5 +112,6 @@ source $HOME/.config/nvim/plugins/vim-airline.vim " yess
 source $HOME/.config/nvim/plugins/vim-smoothie.vim " Smooth scrolling because my eyes
 
 call plug#end()
+
 doautocmd User PlugLoaded " Hook into plugin setup
 

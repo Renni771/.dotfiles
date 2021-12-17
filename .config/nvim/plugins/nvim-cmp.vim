@@ -20,7 +20,7 @@ lua <<EOF
       ['<C-k>'] = cmp.mapping.scroll_docs(-4),
       ['<C-j>'] = cmp.mapping.scroll_docs(4),
 			['<c-space>'] = cmp.mapping.complete(),
-      ['<CR>'] = cmp.mapping.confirm({ 
+      ['<CR>'] = cmp.mapping.confirm({
 				behavior = cmp.ConfirmBehavior.Insert,
 				select = true,
 			}),
@@ -28,7 +28,7 @@ lua <<EOF
 
     sources = cmp.config.sources({
       { name = 'nvim_lsp' },
-      { name = 'path' },
+      -- { name = 'path' },
       { name = 'vsnip' },
       { name = 'buffer', keyword_length = 5},
     }),
@@ -48,13 +48,13 @@ lua <<EOF
 					vsnip= '[snip]',
 					nvim_lsp = '[LSP]',
 					buffer = '[buff]',
-					path = '[path]',
+				-- 	path = '[path]',
 				}
 			})
 		},
 
 		experimental = {
-			native_menu=true,
+			native_menu=false,
 			ghost_text=false,
 		},
 
