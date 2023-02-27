@@ -5,14 +5,9 @@ lsp.preset('recommended')
 lsp.ensure_installed({
   'tsserver',
   'eslint',
-  -- 'gopls',
-  -- 'html',
   'emmet_ls',
-  -- 'jsonls',
-  -- 'sumneko_lua',
   'svelte',
   'tailwindcss',
-  -- 'yamlls'
 })
 
 vim.keymap.set('n', '<C-p>', vim.diagnostic.goto_prev, opts)

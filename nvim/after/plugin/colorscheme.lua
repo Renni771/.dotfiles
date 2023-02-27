@@ -17,4 +17,3 @@ endif
 ]])
 
 vim.cmd('colorscheme gruvbox')
--- vim.cmd('colorscheme poimandres')

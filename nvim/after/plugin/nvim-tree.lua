@@ -1,4 +1,5 @@
 local map = require("utils").map
+local nvim_tree = require("nvim-tree")
 
 -- disable netrw at the very start of your init.lua (strongly advised)
 vim.g.loaded_netrw = 1
@@ -8,10 +9,10 @@ vim.g.loaded_netrwPlugin = 1
 vim.opt.termguicolors = true
 
 -- empty setup using defaults
-require("nvim-tree").setup()
+nvim_tree.setup()
 
 -- OR setup with some options
-require("nvim-tree").setup({
+nvim_tree.setup({
   sort_by = "case_sensitive",
   view = {
     width = 30,
@@ -29,10 +30,11 @@ require("nvim-tree").setup({
   },
 })
 
+
 map('n', '<c-b>', ':NvimTreeToggle <CR>', { silent = true })
 
+-- Open nvim tree whenever `nvim [DIR]` is ran
 local function open_nvim_tree(data)
-
   -- buffer is a directory
   local directory = vim.fn.isdirectory(data.file) == 1
 

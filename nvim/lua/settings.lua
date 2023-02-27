@@ -37,31 +37,8 @@ vim.o.updatetime = 2000
 vim.opt.scrolloff = 8
 vim.opt.sidescrolloff = 24
 
--- TODO: figure out what to do with these
--- vim.opt.clipboard = 'unnamedplus' -- copy to system clipboard
--- vim.o.background = 'dark'
--- vim.o.errorbells = false
--- vim.o.exrc = true
--- vim.o.hidden = true
--- vim.o.ignorecase = true
--- vim.o.inccommand = 'split'
--- vim.o.keywordprg = ':help'
--- vim.o.laststatus = 2
--- vim.o.lazyredraw = true
--- vim.o.mouse = 'n'
--- vim.o.nrformats = ''
--- vim.o.path = '.,,'
--- vim.o.showtabline = 0
--- vim.o.smartcase = true
--- vim.o.splitbelow = true
--- vim.o.splitright = true
--- vim.o.wildignore = '*/node_modules/*,*/.git/*,DS_Store,*/venv/*,*/__pycache__/*,*.pyc'
--- vim.o.wildmenu = true
--- vim.o.wildmode = 'full'
--- vim.o.wildoptions = 'pum'
--- vim.opt.shortmess:append 'c'
--- vim.o.breakindent = true
--- vim.o.foldmethod = 'marker'
+-- ignored dirs
+vim.o.wildignore = '*/node_modules/*,*/.git/*,DS_Store,*/venv/*,*/__pycache__/*,*.pyc'
 
 -- disable builtin plugins i don't need
 vim.g.loaded_gzip = 1
