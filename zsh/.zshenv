@@ -22,13 +22,14 @@ export BROWSER="brave"
 export CHROME_EXECUTABLE"=/usr/bin/brave"
 
 # Programming languages/Tools
-#### GO ####
+# GO
 export GOEXEC="/usr/local/go/bin"
 export GOBIN="${XDG_DATA_HOME:-$HOME/.local/share}/go/bin"
 export GOPATH="${XDG_DATA_HOME:-$HOME/.local/share}/go"
 
-# Setup NVM
+# NVM
 source $CONFIG_DIR/zsh/nvm.sh
 
 # PATH config
 export PATH="$GOBIN:$PATH"
+

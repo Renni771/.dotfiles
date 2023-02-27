@@ -7,11 +7,11 @@
 
 PLUGINS_DIR=$CONFIG_DIR/zsh/plugins
 
-# zsh config
-source $CONFIG_DIR/zsh/zsh-config.sh
-
 # aliases
 source $CONFIG_DIR/zsh/.alias.sh
+
+# zsh config
+source $CONFIG_DIR/zsh/zsh-config.sh
 
 # syntax highlighting
 source $PLUGINS_DIR/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh 2>/dev/null
@@ -32,10 +32,6 @@ RPROMPT="${GITSTATUS_PROMPT}"  # right prompt: git status
 
 # To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
 # [[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
-
-export NVM_DIR="$HOME/.config/nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # Hardware acceleration
 export LIBVA_DRIVER_NAME="iHD"
