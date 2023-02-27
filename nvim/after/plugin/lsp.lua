@@ -5,11 +5,11 @@ lsp.preset('recommended')
 lsp.ensure_installed({
   'tsserver',
   'eslint',
-  'gopls',
+  -- 'gopls',
   -- 'html',
-  -- 'emmet_ls',
+  'emmet_ls',
   -- 'jsonls',
-  'sumneko_lua',
+  -- 'sumneko_lua',
   'svelte',
   'tailwindcss',
   -- 'yamlls'
