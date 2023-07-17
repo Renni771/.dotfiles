@@ -29,11 +29,9 @@ RPROMPT="${GITSTATUS_PROMPT}"  # right prompt: git status
 # Hardware acceleration
 export LIBVA_DRIVER_NAME="iHD"
 
-
-# export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
-
-source $HOME/.config/zsh/nvm.sh
+# NVM
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
 # pnpm
 export PNPM_HOME="/home/rendani/.local/share/pnpm"
