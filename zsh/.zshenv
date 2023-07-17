@@ -18,18 +18,19 @@ export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 export EDITOR="nvim"
 export GIT_EDITOR="/usr/bin/vim"
 export TERMINAL="alacritty"
-export BROWSER="brave"
-export CHROME_EXECUTABLE"=/usr/bin/brave"
+export BROWSER="chromium"
+export CHROME_EXECUTABLE"=/usr/bin/chromium"
 
-# Programming languages/Tools
+# Flatpak
+export XDG_DATA_DIRS="${XDG_DATA_DIRS}:$HOME/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share"
+
 # GO
 export GOEXEC="/usr/local/go/bin"
 export GOBIN="${XDG_DATA_HOME:-$HOME/.local/share}/go/bin"
 export GOPATH="${XDG_DATA_HOME:-$HOME/.local/share}/go"
 
-# NVM
-source $CONFIG_DIR/zsh/nvm.sh
-
 # PATH config
 export PATH="$GOBIN:$PATH"
 
+# Dart
+export PATH="$PATH:$HOME/.pub-cache/bin"

@@ -5,31 +5,26 @@ window:
   position:
     x: 0
     y: 0
-
-  # Window padding (changes require restart)
   padding:
     x: 5
     y: 5
   decorations: full
-  # gtk_theme_variant: dark
-  decorations_theme_variant: dark
 
 scrolling:
   history: 10000
 
 font:
   normal:
-    family: MesloLGS NF
+    family: IntelOne Mono
     style: Regular
   bold:
+    family: IntelOne Mono
     style: Bold
-
-  # Italic font face
   italic:
+    family: IntelOne Mono
     style: Italic
 
-  # Point size
-  size: 13.0
+  size: 14.0
 
 # If `true`, bold text is drawn using the bright color variants.
 draw_bold_text_with_bright_colors: false
