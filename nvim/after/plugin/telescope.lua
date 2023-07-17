@@ -1,4 +1,9 @@
-local map = require("utils").map
+require("telescope").setup{
+  defaults = {
+    file_ignore_patterns = { '^node_modules/', '%.lock', '^build/', '^dist/'},
+  }
+}
 
-map('n', '<leader>f', '<cmd> Telescope find_files<CR>', { noremap = true })
-map('n', '<leader>rg', ' <cmd> Telescope live_grep<CR>', { noremap = true })
+local builtin = require('telescope.builtin')
+vim.keymap.set('n', '<leader>f', builtin.find_files, {})
+vim.keymap.set('n', '<leader>g', builtin.live_grep, {})

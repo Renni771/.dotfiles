@@ -1,10 +1,4 @@
----------------------------
--- Global neovim settings
----------------------------
 local map = require("utils").map
-
--- Restart LSP
-map('n', '<leader>lspr', ':LspRestart<CR>', { noremap = true })
 
 -- Config editing
 map('n', '<leader>vr', ':so $HOME/.config/nvim/init.lua<CR>', { noremap = true })
@@ -25,13 +19,14 @@ map('v', '>', '>gv', { noremap = true }) -- move visual selection RIGHT
 map('v', 'J', ":m '>+1<CR>gv=gv", { noremap = true }) -- move visual selection DOWN
 map('v', 'K', ":m '<-2<CR>gv=gv", { noremap = true }) -- move visual selection UP
 
-
--- Yank into system clipboard
-vim.keymap.set('n', '<leader>y', "\"+y")
-vim.keymap.set('v', '<leader>y', "\"+y")
-vim.keymap.set('n', '<leader>Y', "\"+y")
-
 -- Keep it centered
 map('n', 'n', 'nzzzv', { noremap = true })
 map('n', 'N', 'Nzzzv', { noremap = true })
 map('n', 'J', 'mzJ`z', { noremap = true })
+
+-- Remap ENTER key to ciw
+-- map('n', '<CR>', 'ciw', { noremap = true })
+
+-- Format code
+-- map('n', 'ff', ':Neoformat<CR>', { noremap = true })
+map('n', 'ff', ':Format<CR>', { noremap = true })

@@ -1,58 +1,64 @@
-vim.g.mapleader = ' '
+local set = vim.opt
+local setglobal = vim.g
+
+setglobal.mapleader = ' '
 
 -- line numbers
-vim.o.nu = true
-vim.o.relativenumber = true
+set.nu = true
+set.relativenumber = true
 
 -- no line wrap
-vim.o.wrap = false
+set.wrap = false
 
 -- try be smart about line wrap vim
-vim.o.smartindent = true
+set.smartindent = true
 
--- tab/indet length
-vim.o.tabstop = 2
-vim.o.shiftwidth = 2
-vim.o.softtabstop = 2
-vim.o.expandtab = true
--- vim.o.autoindent = true
+-- tab/indent length
+set.tabstop = 2
+set.shiftwidth = 2
+set.softtabstop = 2
+set.expandtab = true
 
 -- undo stuff
-vim.o.swapfile = false
-vim.o.backup = false
-vim.o.undodir = os.getenv("HOME") .. "/.vim/undodir"
-vim.o.undofile = true
+set.swapfile = false
+set.backup = false
+set.undodir = os.getenv("HOME") .. "/.vim/undodir"
+set.undofile = true
 
 -- better search
-vim.o.incsearch = true
-vim.o.hlsearch = false
+set.incsearch = true
+set.hlsearch = false
 
 -- good colours!
-vim.o.termguicolors = true
+set.termguicolors = true
 
 -- fast update time
-vim.o.updatetime = 2000
+set.updatetime = 2000
 
 -- vertical and horizontal scroll when reaching edges
-vim.opt.scrolloff = 8
-vim.opt.sidescrolloff = 24
+set.scrolloff = 8
+set.sidescrolloff = 24
+
+-- spell checking
+set.spelllang = 'en_gb'
+set.spell = true
 
 -- ignored dirs
-vim.o.wildignore = '*/node_modules/*,*/.git/*,DS_Store,*/venv/*,*/__pycache__/*,*.pyc'
+set.wildignore = '*/node_modules/*,*/.git/*,DS_Store,*/venv/*,*/__pycache__/*,*.pyc'
 
--- disable builtin plugins i don't need
-vim.g.loaded_gzip = 1
-vim.g.loaded_zip = 1
-vim.g.loaded_zipPlugin = 1
-vim.g.loaded_tar = 1
-vim.g.loaded_tarPlugin = 1
-vim.g.loaded_getscript = 1
-vim.g.loaded_getscriptPlugin = 1
-vim.g.loaded_vimball = 1
-vim.g.loaded_vimballPlugin = 1
-vim.g.loaded_2html_plugin = 1
-vim.g.loaded_logiPat = 1
-vim.g.loaded_rrhelper = 1
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
-vim.g.loaded_netrwSettings = 1
+-- disable built-in plugins I don't need
+setglobal.loaded_gzip = 1
+setglobal.loaded_zip = 1
+setglobal.loaded_zipPlugin = 1
+setglobal.loaded_tar = 1
+setglobal.loaded_tarPlugin = 1
+setglobal.loaded_getscript = 1
+setglobal.loaded_getscriptPlugin = 1
+setglobal.loaded_vimball = 1
+setglobal.loaded_vimballPlugin = 1
+setglobal.loaded_2html_plugin = 1
+setglobal.loaded_logiPat = 1
+setglobal.loaded_rrhelper = 1
+setglobal.loaded_netrw = 1
+setglobal.loaded_netrwPlugin = 1
+setglobal.loaded_netrwSettings = 1

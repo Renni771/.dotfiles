@@ -1,21 +1,31 @@
 -- Only required if you have packer configured as `opt`
-vim.cmd [[packadd packer.nvim]]
+vim.cmd.packadd('packer.nvim')
 
 return require('packer').startup(function(use)
   -- Packer can manage itself
-  use 'wbthomason/packer.nvim'
+  use { 'wbthomason/packer.nvim' }
+
+  -- AI !!!!
+  -- use { 'github/copilot.vim' }
+  use { "zbirenbaum/copilot.lua" }
+
+  -- Undo tree
+  use { "mbbill/undotree" }
+
+  -- Formatter
+  -- use 'sbdchd/neoformat'
+  use { 'mhartington/formatter.nvim' }
 
   -- Auto comment
-  use 'tpope/vim-commentary'
+  use { 'tpope/vim-commentary' }
 
   -- Better vim.ui interfaces
   use { 'stevearc/dressing.nvim' }
 
-  -- Color scheme
-  use 'morhetz/gruvbox'
-
-  -- Flutter devtools
-  use 'akinsho/flutter-tools.nvim'
+  -- Color schemes because I can't decide
+  use { 'morhetz/gruvbox'}
+  use { 'folke/tokyonight.nvim' }
+  use { 'rose-pine/neovim', as = 'rose-pine' }
 
   -- Fuzzy finder
   use {
@@ -30,7 +40,7 @@ return require('packer').startup(function(use)
   }
 
   -- Git wrapper
-  use 'tpope/vim-fugitive'
+  use { 'tpope/vim-fugitive' }
 
   -- Smarter auto pairs
   use { "windwp/nvim-autopairs", config = function() require("nvim-autopairs").setup {} end }
@@ -38,6 +48,7 @@ return require('packer').startup(function(use)
   -- LSP
   use {
     'VonHeikemen/lsp-zero.nvim',
+    branch = 'v1.x',
     requires = {
       -- LSP Support
       { 'neovim/nvim-lspconfig' },
@@ -59,13 +70,11 @@ return require('packer').startup(function(use)
   }
 
   -- Jump to commonly used buffers
-  use 'ThePrimeagen/harpoon'
+  use { 'ThePrimeagen/harpoon' }
 
-  -- Syntax highlighting
-  use('nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' })
-
-  -- Smooth scrolling because my eyes
-  use 'psliwka/vim-smoothie'
+  -- Language grammar stuff
+  use ('nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' })
+  use { 'nvim-treesitter/nvim-treesitter-context' }
 
   -- Status bar
   use { 'nvim-lualine/lualine.nvim', requires = { 'kyazdani42/nvim-web-devicons', opt = true } }
