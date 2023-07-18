@@ -16,14 +16,14 @@ scrolling:
 font:
   normal:
     family: IntelOne Mono
+    # family: MesloLGS NF
     style: Regular
   bold:
-    family: IntelOne Mono
+    # family: IntelOne Mono
     style: Bold
   italic:
-    family: IntelOne Mono
+    # family: IntelOne Mono
     style: Italic
-
   size: 14.0
 
 # If `true`, bold text is drawn using the bright color variants.
