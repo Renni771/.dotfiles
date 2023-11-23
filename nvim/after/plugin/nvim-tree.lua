@@ -12,8 +12,8 @@ require("nvim-tree").setup({
     group_empty = true,
   },
   filters = {
-    custom = {".git", "node_modules", ".vscode"},
-    dotfiles = false,
+    custom = {"^\\.git", ".gitignore"}
+    -- dotfiles = false,
   },
 })
 

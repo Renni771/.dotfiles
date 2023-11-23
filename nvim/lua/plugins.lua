@@ -6,18 +6,16 @@ return require('packer').startup(function(use)
   use { 'wbthomason/packer.nvim' }
 
   -- AI !!!!
-  -- use { 'github/copilot.vim' }
-  use { "zbirenbaum/copilot.lua" }
+  use { 'github/copilot.vim' }
 
   -- Undo tree
   use { "mbbill/undotree" }
 
   -- Formatter
-  -- use 'sbdchd/neoformat'
-  use { 'mhartington/formatter.nvim' }
+  use 'sbdchd/neoformat'
 
   -- Auto comment
-  use { 'tpope/vim-commentary' }
+  use { 'numToStr/Comment.nvim' }
 
   -- Better vim.ui interfaces
   use { 'stevearc/dressing.nvim' }
@@ -43,7 +41,7 @@ return require('packer').startup(function(use)
   use { 'tpope/vim-fugitive' }
 
   -- Smarter auto pairs
-  use { "windwp/nvim-autopairs", config = function() require("nvim-autopairs").setup {} end }
+  use { "windwp/nvim-autopairs" }
 
   -- LSP
   use {

@@ -26,7 +26,3 @@ map('n', 'J', 'mzJ`z', { noremap = true })
 
 -- Remap ENTER key to ciw
 -- map('n', '<CR>', 'ciw', { noremap = true })
-
--- Format code
--- map('n', 'ff', ':Neoformat<CR>', { noremap = true })
-map('n', 'ff', ':Format<CR>', { noremap = true })
