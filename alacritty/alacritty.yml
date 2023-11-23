@@ -15,14 +15,17 @@ scrolling:
 
 font:
   normal:
-    family: IntelOne Mono
+    family: IntoneMonoNerdFont
+    # family: IntelOne Mono
     # family: MesloLGS NF
     style: Regular
   bold:
     # family: IntelOne Mono
+    family: IntoneMonoNerdFont
     style: Bold
   italic:
     # family: IntelOne Mono
+    family: IntoneMonoNerdFont
     style: Italic
   size: 14.0
 
