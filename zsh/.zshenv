@@ -16,7 +16,7 @@ export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 
 # Default programs
 export EDITOR="nvim"
-export GIT_EDITOR="/usr/bin/vim"
+export GIT_EDITOR="/usr/local/bin/nvim"
 export TERMINAL="alacritty"
 export BROWSER="brave-browser"
 export CHROME_EXECUTABLE"=/usr/bin/brave-browser"
