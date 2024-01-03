@@ -39,7 +39,9 @@ case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
-# pnpm end
+
+# Homebrew
+export PATH=/usr/local/bin:$PATH
 
 # bun completions
 [ -s "/home/rendani/.bun/_bun" ] && source "/home/rendani/.bun/_bun"
