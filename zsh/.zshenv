@@ -1,5 +1,7 @@
 # Adds `~/.local/bin` to $PATH
-export PATH="$PATH:${$(find ~/.local/bin -type d -printf %p:)%%:}"
+# export PATH="$PATH:${$(find ~/.local/bin -type d -printf %p:)%%:}"
+export PATH=$PATH:/Users/.local/bin
+
 
 # XDG compatibility
 export XDG_CONFIG_HOME="$HOME/.config"
@@ -31,6 +33,8 @@ export GOBIN="$GOPATH/bin"
 export PATH="$PATH:$GOBIN"
 
 # Dart
-export PATH="$PATH:$HOME/.pub-cache/bin"
 export PATH="$PATH:/usr/lib/dart/bin"
-. "$HOME/.cargo/env"
+export PATH="$PATH:$HOME/.pub-cache/bin"
+
+# Rust
+# . "$HOME/.cargo/env"
