@@ -6,32 +6,23 @@ source $CONFIG_DIR/zsh/.alias.sh
 # zsh config
 source $CONFIG_DIR/zsh/zsh-config.sh
 
-# syntax highlighting
-source $PLUGINS_DIR/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh 2>/dev/null
 
-# auto suggestions
-source $PLUGINS_DIR/zsh-autosuggestions/zsh-autosuggestions.zsh 2>/dev/null
-
-# git prompt
-source $PLUGINS_DIR/gitstatus/gitstatus.prompt.zsh 2>/dev/null
-
-# powerlevel10k
-# source $PLUGINS_DIR/powerlevel10k/powerlevel10k.zsh-theme 2>/dev/null
+# Plugins
+source $PLUGINS_DIR/fast-syntax-highlighting/F-Sy-H.plugin.zsh  # syntax highlighting
+source $PLUGINS_DIR/zsh-autosuggestions/zsh-autosuggestions.zsh  # auto suggestions
+source $PLUGINS_DIR/gitstatus/gitstatus.prompt.zsh # git prompt
 
 # Set prompt and enable colours
 autoload -U colors && colors
-PROMPT="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
-RPROMPT="${GITSTATUS_PROMPT}"  # right prompt: git status
-
-# To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
-# [[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
+# PROMPT="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%m %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
+PROMPT='%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%m %{$fg[magenta]%}%~ $GITSTATUS_PROMPT%{$fg[red]%}]%{$reset_color%}$%b '
 
 # Hardware acceleration
 export LIBVA_DRIVER_NAME="iHD"
 
 # NVM
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
 # pnpm
 export PNPM_HOME="/home/rendani/.local/share/pnpm"
@@ -49,3 +40,6 @@ export PATH=/usr/local/bin:$PATH
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+
+# Go
+export GOPRIVATE="github.com/thenativeweb"

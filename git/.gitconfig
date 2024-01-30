@@ -1,0 +1,9 @@
+[user]
+  email = rendanig@gmail.com
+  name = Rendani Gangazhe
+[init]
+  defaultBranch = main
+[core]
+  excludesfile = $HOME/.gitignore
+[url "git@github.com:"]
+	insteadOf = https://github.com/

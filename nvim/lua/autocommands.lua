@@ -21,3 +21,7 @@ autocmd('BufEnter', {
   pattern = '',
   command = 'set fo-=c fo-=r fo-=o'
 })
+
+-- Toggle between relative and absolute line numbers when switching editing modes
+autocmd('InsertEnter', { pattern = '*', command = ':set norelativenumber' })
+autocmd('InsertLeave', { pattern = '*', command = ':set relativenumber' })

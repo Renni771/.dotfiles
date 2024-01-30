@@ -40,7 +40,8 @@ set.scrolloff = 8
 set.sidescrolloff = 24
 
 -- spell checking
-set.spelllang = 'en_gb'
+set.spelllang = 'en_us'
+-- set.spelllang = 'en_gb'
 set.spell = true
 
 -- ignored dirs

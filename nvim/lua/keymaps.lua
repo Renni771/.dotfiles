@@ -23,6 +23,3 @@ map('v', 'K', ":m '<-2<CR>gv=gv", { noremap = true }) -- move visual selection U
 map('n', 'n', 'nzzzv', { noremap = true })
 map('n', 'N', 'Nzzzv', { noremap = true })
 map('n', 'J', 'mzJ`z', { noremap = true })
-
--- Remap ENTER key to ciw
--- map('n', '<CR>', 'ciw', { noremap = true })
