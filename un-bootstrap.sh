@@ -11,3 +11,7 @@ rm $HOME/.zshenv
 
 rm $HOME/.gitconfig
 rm $HOME/.gitignore
+
+LOCAL_BIN_DIR="$HOME/.local/bin"
+rm $LOCAL_BIN_DIR/tm
+rm $LOCAL_BIN_DIR/ta

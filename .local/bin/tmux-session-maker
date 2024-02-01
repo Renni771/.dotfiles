@@ -1,0 +1,42 @@
+#!/bin/bash
+
+# Define the base development directory
+development_dir=~/development
+
+# Potential specific work directories under ~/development/work/
+work_dirs=$(find "$development_dir/work/" -mindepth 1 -maxdepth 1 -type d)
+
+# Prepare an array to hold search paths
+declare -a search_paths=("$development_dir/projects" "$development_dir/play")
+
+# Add each work dir to the search paths
+for dir in $work_dirs; do
+    search_paths+=("$dir")
+done
+
+# Use fd to select a directory within the specified search paths
+# respecting .gitignore and excluding node_modules
+selected_dir=$(fd --type d --exclude node_modules --max-depth 1 . ${search_paths[@]} 2> /dev/null | fzf)
+
+# Exit if no directory is selected
+if [ -z "$selected_dir" ]; then
+  echo "No directory selected."
+  exit 1
+fi
+
+# Change to the selected directory
+cd "$selected_dir" || exit
+
+# Get the name of the current working directory
+session_name=$(basename "$PWD")
+
+# Check if a tmux session with the name already exists
+if tmux has-session -t "$session_name" 2> /dev/null; then
+  echo "Session $session_name already exists. Attaching to existing session."
+  tmux attach -t "$session_name"
+else
+  # Create a new tmux session with the name of the current directory, send cd command, and attach to it
+  tmux new-session -d -s "$session_name"
+  tmux send-keys -t "$session_name" "cd \"$PWD\"" C-m
+  tmux attach -t "$session_name"
+fi
