@@ -1,6 +1,6 @@
 # Adds `~/.local/bin` to $PATH
-# export PATH="$PATH:${$(find ~/.local/bin -type d -printf %p:)%%:}"
-export PATH="$PATH:/Users/$(whoami)/.local/bin"
+# export PATH="$PATH:${$(find ~/.local/bin -type d -printf %p:)%%:}" # For linux
+export PATH="$PATH:/Users/$(whoami)/.local/bin" # For macOS
 
 # XDG compatibility
 export XDG_CONFIG_HOME="$HOME/.config"
