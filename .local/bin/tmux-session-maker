@@ -7,7 +7,7 @@ development_dir=~/development
 work_dirs=$(find "$development_dir/work/" -mindepth 1 -maxdepth 1 -type d)
 
 # Prepare an array to hold search paths
-declare -a search_paths=("$development_dir/projects" "$development_dir/play")
+declare -a search_paths=("$development_dir/projects/" "$development_dir/play/")
 
 # Add each work dir to the search paths
 for dir in $work_dirs; do
